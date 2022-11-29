@@ -67,8 +67,7 @@ namespace TechJobsPersistentAutograded.Controllers
                 _repo.SaveChanges();
                 return Redirect("Index"); // Left off on Part 2, Progress Check before Test It with SQL
             }
-
-            return View("AddJob");
+            return View("AddJob", new AddJobViewModel(_repo.GetAllEmployers().ToList(), _repo.GetAllSkills().ToList()));
         }
 
 
