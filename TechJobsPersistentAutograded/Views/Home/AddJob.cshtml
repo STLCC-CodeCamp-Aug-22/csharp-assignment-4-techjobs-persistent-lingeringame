@@ -15,9 +15,16 @@
 
     </div>
     <div class="form-group">
-        <label asp-for="Employers"></label>
-        <select asp-items="@Model.Employers"></select>
+        <label asp-for="EmployerId"></label> <!-- Employers? Not EmployerID? -->
+        <select asp-for="EmployerId" asp-items="@Model.Employers"></select> 
         <a asp-area="" asp-controller="Employer" asp-action="Add">Add Employer</a>
+    </div>
+    <div class="form-group">
+        @foreach(var skillObj in @Model.Skills)
+        {
+            <label><input type="checkbox" name="selectedSkills" value="@skillObj.Id" /> @skillObj.Name &nbsp;&nbsp;</label>
+        }
+        <a asp-area="" asp-controller="Skill" asp-action="Add">Add Skill</a>
     </div>
 
     <input type="submit" value="Add Job" />
