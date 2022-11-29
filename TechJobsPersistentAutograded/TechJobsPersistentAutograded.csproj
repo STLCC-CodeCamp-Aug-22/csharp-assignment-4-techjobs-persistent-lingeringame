@@ -23,7 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\Employer\" />
     <Folder Include="Views\List\" />
     <Folder Include="Views\Search\" />
@@ -31,6 +30,7 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.31" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.27" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.27">

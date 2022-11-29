@@ -13,26 +13,45 @@ namespace TechJobsPersistentAutograded.Controllers
 {
     public class EmployerController : Controller
     {
-
+        private JobRepository _repo;
+        public EmployerController(JobRepository repo)
+        {
+            _repo = repo;   
+        }
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Employer> Employers = _repo.GetAllEmployers();
+
+            return View(Employers);
         }
 
         public IActionResult Add()
         {
-            return View();
+            AddEmployerViewModel addEmployerViewModel = new AddEmployerViewModel();
+            return View(addEmployerViewModel);
         }
 
-        public IActionResult ProcessAddEmployerForm()
+        public IActionResult ProcessAddEmployerForm(AddEmployerViewModel addEmployerViewModel)
         {
-            return View();
+            if(ModelState.IsValid)
+            {
+                Employer theEmployer = new Employer
+                {
+                    Name = addEmployerViewModel.Name,
+                    Location = addEmployerViewModel.Location
+                };
+                _repo.AddNewEmployer(theEmployer);
+                _repo.SaveChanges();
+                return Redirect("/Employer"); //Redirect("Index")?
+            }
+            return View("Add");
         }
 
         public IActionResult About(int id)
         {
-            return View();
+            Employer theEmployer = _repo.FindEmployerById(id);
+            return View(theEmployer);
         }
     }
 }
